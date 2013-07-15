@@ -18,17 +18,17 @@ public class EightQueens {
 
   private static void enumerate(int numberOfQueens, List<int[]> solutions) {
     int[] array = new int[numberOfQueens];
-    enumerate(array, 0, solutions);
+    putAQueenOnARowNumber(array, 0, solutions);
   }
 
-  private static void enumerate(int[] array, int rowNumber, List<int[]> solutions) {
+  private static void putAQueenOnARowNumber(int[] array, int rowNumber, List<int[]> solutions) {
     int ARRAY_LENGTH = array.length;
     if (isLastQueenLocatedProperly(rowNumber, ARRAY_LENGTH)) {
       solutions.add(array.clone());
     } else {
       for (int i = 0; i < ARRAY_LENGTH; i++) {
         putQueenOnRowNumberToAColumnNumber(array, rowNumber, i);
-        if (isConsistent(array, rowNumber)) enumerate(array, rowNumber + 1, solutions);
+        if (notConflictWithAllQueensLocatedPreviously(array, rowNumber)) putAQueenOnARowNumber(array, rowNumber + 1, solutions);
       }
     }
   }
@@ -37,7 +37,7 @@ public class EightQueens {
    * Return true if queen placement array[rowNumber] does not conflict with
    * other queens array[0] through array[rowNumber-1]
    */
-  private static boolean isConsistent(int[] array, int rowNumber) {
+  private static boolean notConflictWithAllQueensLocatedPreviously(int[] array, int rowNumber) {
     for (int i = 0; i < rowNumber; i++) {
       if (array[i] == array[rowNumber])             return false;   // same column
       if ((array[i] - array[rowNumber]) == (rowNumber - i)) return false;   // same major diagonal
