@@ -11,8 +11,11 @@ import java.util.List;
 public class EightQueens {
   public static List<int[]> getSolutions(int numberOfQueens) {
     List<int[]> solutions = new ArrayList<int[]>();
-    int[] solution = {1, 3, 0, 2};
-    solutions.add(solution);
+    enumerate(numberOfQueens, solutions);
     return solutions;
+  }
+
+  private static void enumerate(int numberOfQueens, List<int[]> solutions) {
+    //To change body of created methods use File | Settings | File Templates.
   }
 }
