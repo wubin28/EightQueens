@@ -23,6 +23,14 @@ public class DesignTest {
   @Test
   public void testElementValueOfArrayIsColumnNumberOfQueen() {
 
+    List<int[]> solutions = EightQueens.getSolutions(4);
+    int sumOfAllElementValues = 0;
+
+    for (int columnNumber : solutions.get(0)) {
+      sumOfAllElementValues += columnNumber;
+    }
+    assertEquals("failure - element value of array is not the column number of the queen", sumOfAllElementValues, 6);
+
   }
 
 }
